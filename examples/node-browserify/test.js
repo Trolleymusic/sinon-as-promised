@@ -15,4 +15,12 @@ describe('sinon-as-promised node example', function () {
     })
   })
 
+  it('can create a stub that resolves', function () {
+    var stub = sinon.stub().resolves('value')
+    return stub().spread(function (first, second) {
+      expect(first).to.equal('value')
+      expect(second).to.equal('value 2')
+    })
+  })
+
 })

@@ -1,11 +1,11 @@
 'use strict'
 
-var Promise = require('native-promise-only')
+var Promise = require('q')
 var sinon = require('sinon')
-var createThenable = require('create-thenable')
+var createSpreadable = require('create-spreadable')
 
 function resolves (value) {
-  return this.returns(createThenable(Promise, function (resolve) {
+  return this.returns(createSpreadable(Promise, function (resolve) {
     resolve(value)
   }))
 }
@@ -17,7 +17,7 @@ function rejects (err) {
   if (typeof err === 'string') {
     err = new Error(err)
   }
-  return this.returns(createThenable(Promise, function (resolve, reject) {
+  return this.returns(createSpreadable(Promise, function (resolve, reject) {
     reject(err)
   }))
 }
